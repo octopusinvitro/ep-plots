@@ -1,0 +1,17 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    octopusinvitro -- Space Traveller -- @octopusinvitro
+
+# THANKS
+
+    To the Universe, who eventually gave raise to humanity.
+    Although many think that was not a very clever move.
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5
+    jQuery, Modernizr, Normalize.css
+    Jasmine, Gulp

@@ -1,0 +1,23 @@
+image: node:4.2.2
+
+cache:
+  paths:
+  - node_modules/
+
+# /usr/local/bin
+before_script:
+  - PHANTOM_JS=phantomjs-2.1.1-linux-x86_64
+  - mkdir ~/tmp
+  - pushd ~/tmp
+  - wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
+  - tar xvf $PHANTOM_JS.tar.bz2
+  - mv $PHANTOM_JS phantomjs
+  - ln -s ~/tmp/phantomjs/bin/phantomjs /usr/bin/phantomjs
+  - rm -r $PHANTOM_JS.tar.bz2
+  - phantomjs --version
+  - popd
+
+all_tests:
+  script:
+    - npm install -g testem
+    - testem ci
