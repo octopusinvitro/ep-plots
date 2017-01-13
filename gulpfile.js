@@ -14,6 +14,12 @@ var
            './dev/js/vendor/*.js'
     ],
     js: [
+           './dev/js/src/connection.js',
+           './dev/js/src/helpers.js',
+           './dev/js/src/ep.js',
+           './dev/js/src/sources.js',
+           './dev/js/src/x2y.js',
+           './dev/js/src/views.js',
            './dev/js/plugins.js',
            './dev/js/main.js'
     ],

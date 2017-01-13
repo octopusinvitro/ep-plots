@@ -1,0 +1,66 @@
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  max-width: 62.5em;
+  padding: 1em;
+  background-color: $bg-color;
+}
+
+.bar-chart__title {
+  padding-bottom: 1em;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 20%;
+  background: repeating-linear-gradient(
+    to right,
+    $guides-color,
+    $guides-color 1px,
+    $bg-color 1px,
+    $bg-color 5%
+  );
+
+  &:after {
+    content: "";
+    display: block;
+    height: 3em;
+    margin: .5em 0;
+    background-color: $bar-color;
+    transition: background-color .3s ease;
+    cursor: pointer;
+  }
+
+  &:hover,
+  &:focus {
+    &:after {
+      background-color: #aaa;
+    }
+  }
+}
+
+.bar-text {
+  box-sizing: border-box;
+  width: 20%;
+  margin-left: -20%;
+  padding-right: 1em;
+  font-size: 80%;
+  font-weight: 700;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+// LOADED DYNAMICALLY
+// @for $i from 1 through 100 {
+//   .percentage-#{$i} {
+//     &:after {
+//       $value: ($i * 1%);
+//       width: $value;
+//     }
+//   }
+// }

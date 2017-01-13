@@ -1,0 +1,17 @@
+---
+layout: default
+---
+{% include top_menu.html %}
+
+<article class="wrapper article">
+  <h1>Plots with {% if page.url contains '/css/' %} CSS{% else %} SVG{% endif %}</h1>
+
+  <section>
+    <h2>{{ page.title | escape }}</h2>
+    <h3>Technique</h3>
+    {{ content }}
+  </section>
+
+</article>
+
+{% include top_menu.html %}

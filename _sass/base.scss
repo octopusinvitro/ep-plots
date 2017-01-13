@@ -20,6 +20,16 @@ body {
   font-family:      $base-font-family;
   font-weight:      $base-font-weight;
   background-color: $background-color;
+
+  // Use hardware acceleration for animations
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+html, body {
+  height: 100%;
 }
 
 /*
@@ -105,10 +115,26 @@ a {
   color: $link-color;
 }
 
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
 h1,
 h2 {
   font-weight: 300;
   color: $title-color;
+}
+
+code {
+  padding: .2em .5em;
+  font-size: .8em;
+  color: #f39c12;
+  background-color: #eee;
+  border-radius: .5em;
 }
 
 footer {

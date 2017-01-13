@@ -1,0 +1,64 @@
+---
+title: 1. CSS Bar Charts with datalists
+description: 'Applied to Mexico: Percentage of deputies per party in the current term (LXIII)'
+layout: page
+---
+    <p>The guides are made with a CSS gradient applied to each <code>dd</code> element.<br>
+    The bars are made with a pseudo-element on each <code>dd</code> element.<br>
+    The axis labels are text in a <code>span</code> inside each <code>dd</code>.</p>
+
+    <p><strong>Huge caveat:</strong>It needs 100 classes for the percentages!!!</p>
+
+    <dl id="bar-chart" class="bar-chart">
+      <dt class="bar-chart__title">Mexico: Percentage of deputies per party in the current term (LXIII)</dt>
+    </dl>
+
+    <section>
+      <h3>Party Count</h3>
+      <p>Total members: <span id="total"></span>.</p>
+      <ul id="party-count">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Sources:</h3>
+      <ul id="sources">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Markup</h3>
+      <pre><code class="language-markup">&lt;dl id="bar-chart" class="bar-chart">
+  &lt;dt class="bar-chart__title">Mexico: Percentage of deputies per party in the current term (LXIII)&lt;/dt>
+
+  &lt;dd class="bar percentage-41">&lt;span class="bar-text">PRI: 41%&lt;/span>&lt;/dd>
+  &lt;dd class="bar percentage-22">&lt;span class="bar-text">PAN: 22%&lt;/span>&lt;/dd>
+  &lt;dd class="bar percentage-9">&lt;span class="bar-text">PVE: 9%&lt;/span>&lt;/dd>
+  &lt;dd class="bar percentage-7">&lt;span class="bar-text">MORENA: 7%&lt;/span>&lt;/dd>
+  &lt;dd class="bar percentage-2">&lt;span class="bar-text">PES: 2%&lt;/span>&lt;/dd>
+  &lt;dd class="bar percentage-12">&lt;span class="bar-text">PRD: 12%&lt;/span>&lt;/dd>
+  &lt;dd class="bar percentage-5">&lt;span class="bar-text">MC: 5%&lt;/span>&lt;/dd>
+  &lt;dd class="bar percentage-3">&lt;span class="bar-text">PANAL: 3%&lt;/span>&lt;/dd>
+  &lt;dd class="bar percentage-0">&lt;span class="bar-text">_IND: 0%&lt;/span>&lt;/dd>
+&lt;/dl></code></pre>
+    </section>
+
+
+    {% include scripts.html %}
+    <script>
+    (function() {
+      function useData(d, country, terms) {
+        var data = JSON.parse(d);
+        showSources(data, 'sources');
+        showCount(data, terms[0], {
+          'bars':       'bar-chart',
+          'partyCount': 'party-count',
+          'totalCount': 'total'
+        });
+      }
+
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/1400578d29e8a094c48c14a34b5ae4a9712e8809/data/Mexico/Deputies/ep-popolo-v1.0.json', 'Mexico', ['term/63'], useData);
+    })();
+    </script>
+
+    <link rel="stylesheet" href="/assets/css-bars-percentages.css" type="text/css">

@@ -8,13 +8,6 @@ $base-font-size:   12pt;
 $base-font-weight: 400;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
-
-/* colors */
-$text-color:       #555;
-$background-color: #fff;
-$link-color:       yellowgreen;
-$selection-color:  lightblue;
-
 $content-width:    40em;
 $spacing-unit:     1.5em;
 
@@ -22,8 +15,11 @@ $title-color: #5AADE3;
 
 @import
   "normalize",
+  "colors",
   "base",
-  "top-menu",
   "styles",
+  "top-menu",
+  "css-bars",
+  "prism",
   "mediaqueries",
   "print";
