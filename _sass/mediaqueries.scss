@@ -1,3 +1,10 @@
+pre,
+code,
+code[class*="language-"],
+pre[class*="language-"] {
+  font-family: 'Source Code Pro', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
 /* ==========================================================================
     EXAMPLE Media Queries for Responsive Design.
     These examples override the primary ('mobile first') styles.

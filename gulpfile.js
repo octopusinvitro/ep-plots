@@ -9,31 +9,22 @@ var
   sourcemaps   = require('gulp-sourcemaps'),
   uglify       = require('gulp-uglify'),
   dev          = {
-    files: [
-           './img/',
-           './*.ico',
-           './*.txt',
-           './*.html',
-           './*.png',
-           './*.xml'
-    ],
-    css:   './scss/main.scss',
+    files: ['./dev/img/',],
     vendor: [
-           './js/vendor/*.js'
+           './dev/js/vendor/*.js'
     ],
     js: [
-           './js/plugins.js',
-           './js/main.js'
+           './dev/js/plugins.js',
+           './dev/js/main.js'
     ],
-    img:   './img/**'
+    img:   './dev/img/**'
   },
   dist         = {
-    root:  './site/',
+    root:  './',
     files: distFiles,
-    css:   './site/css/',
-    vendor:'./site/js/vendor',
-    js:    './site/js/',
-    img:   './site/img/'
+    vendor:'./javascripts/vendor',
+    js:    './javascripts/',
+    img:   './images/'
   };
 
 function distFiles() {
@@ -41,16 +32,6 @@ function distFiles() {
     return dist.root + f.substr(2);
   });
 }
-
-gulp.task('scss', function() {
-  return gulp
-    .src(dev.css)
-    .pipe(sourcemaps.init())
-    .pipe(sass({outputStyle: 'compressed'}))
-    .pipe(autoprefixer())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest(dist.css));
-});
 
 gulp.task('js', function() {
   return gulp
@@ -87,11 +68,9 @@ gulp.task('vendor', function () {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./scss/**', ['scss']);
   gulp.watch(dev.js,      ['js']);
   gulp.watch(dev.img,     ['img']);
   gulp.watch(dev.files,   ['dist']);
-  gulp.watch('./scss/**', browsersync.reload);
   gulp.watch(dev.js,      browsersync.reload);
   gulp.watch(dev.img,     browsersync.reload);
   gulp.watch(dev.files,   browsersync.reload);
@@ -100,7 +79,7 @@ gulp.task('watch', function() {
 gulp.task('server', function() {
   browsersync.init({
     server: {
-      baseDir: dist.root,
+      baseDir: '_site',
       routes: {
         '/test' : 'js'
       }
@@ -111,4 +90,6 @@ gulp.task('server', function() {
   });
 });
 
-gulp.task('default', ['scss', 'js', 'img', 'dist', 'vendor', 'watch', 'server']);
+gulp.task('build',   ['js', 'dist', 'vendor']);
+gulp.task('default', ['js', 'dist', 'vendor', 'watch', 'server']);
+gulp.task('serve',   ['watch', 'server']);

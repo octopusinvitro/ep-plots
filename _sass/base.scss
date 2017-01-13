@@ -105,8 +105,15 @@ a {
   color: $link-color;
 }
 
+h1,
+h2 {
+  font-weight: 300;
+  color: $title-color;
+}
 
-
+footer {
+  text-align: center;
+}
 
 
 

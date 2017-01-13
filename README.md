@@ -1,18 +1,12 @@
-[![Build Status](https://travis-ci.org/octopusinvitro/html5-scafold.svg?branch=master)](https://travis-ci.org/octopusinvitro/html5-scafold)
-[![build status](https://gitlab.com/octopusinvitro/html5-scafold/badges/master/build.svg)](https://gitlab.com/octopusinvitro/html5-scafold/commits/master)
+[![Build Status](https://travis-ci.org/octopusinvitro/ep-plots.svg?branch=gh-pages)](https://travis-ci.org/octopusinvitro/ep-plots)
+[![build status](https://gitlab.com/octopusinvitro/ep-plots/badges/gh-pages/build.svg)](https://gitlab.com/octopusinvitro/ep-plots/commits/gh-pages)
 
 
 # Readme
 
-You can use this project as a base skeleton or a starting point for a web project. This is my personal preference of a configuration but it is easy to change to your favorite tools.
+This is something I started to teach myself how to use web technologies to plot things.
 
-** Remember to:**
-
-- Update badges with your user and repo names.
-
-- Update travis by turning your project repo ON.
-
-- Explain your project here.
+I am using the EveryPolitician dataset to make these plots.
 
 
 ## About
@@ -23,9 +17,11 @@ Also, CI files have been added to be used with Travis and GitLab. To run tests i
 
 ## Installing
 
+This is a Jekyll site
+
 ### Requirements
 
-You need to have npm installed.
+You need to have npm installed. You also need Ruby at the version specified by the Gemfile. It's better if you use a Ruby version manager, for example, [rbenv](https://cbednarski.com/articles/installing-ruby/)
 
 ### Download
 
@@ -35,6 +31,13 @@ Clone this repository and install dependencies:
 $ git clone <URL>
 $ cd repo
 $ npm install
+```
+
+If you use rbenv:
+
+```bash
+$ rbenv local RUBY_VERSION
+$ bundle install
 ```
 
 ## Running
@@ -61,6 +64,14 @@ You can also run each task separately, for example, to run only the `watch` task
 ```bash
 $ gulp watch
 ```
+
+
+### Running the site
+
+```bash
+$ bundle exec jekyll serve --watch
+```
+
 
 ## Testing in the browser
 

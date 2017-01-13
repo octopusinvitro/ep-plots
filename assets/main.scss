@@ -1,7 +1,10 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
 @charset "utf-8";
 
-$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$base-font-size:   16pt;
+$base-font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-size:   12pt;
 $base-font-weight: 400;
 $small-font-size:  $base-font-size * 0.875;
 $base-line-height: 1.5;
@@ -15,10 +18,11 @@ $selection-color:  lightblue;
 $content-width:    40em;
 $spacing-unit:     1.5em;
 
+$title-color: #5AADE3;
+
 @import
   "normalize",
   "base",
-  "components",
-  "patterns",
+  "styles",
   "mediaqueries",
   "print";

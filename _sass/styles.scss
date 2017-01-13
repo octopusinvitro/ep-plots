@@ -1,0 +1,28 @@
+// No parent-child relationship
+.small {
+  font-size: $small-font-size;
+}
+
+.wrapper {
+  padding: 1em;
+}
+
+.article {
+  max-width: $content-width;
+  margin: auto;
+}
+
+.hero {
+  padding: calc(100% - $content-width)/2;
+  background-color: $bar-color;
+
+  h1 {
+    color: $text-color;
+  }
+}
+
+@media only screen and (max-width: 35em) {
+  .hero {
+    padding: calc(100% - $content-width)/2;
+  }
+}
