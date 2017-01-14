@@ -1,0 +1,116 @@
+---
+title: 3. Sparklines with figure and ul
+description: Applied to the ages of Northern Ireland politicians by term
+layout: page
+---
+    <p>The sparklists are in a <code>ul</code>. Each line is in a <code>li</code>.<br>
+      Wrap every data value in each line inside a span and style it as a bar.<br>
+      Then wrap all data values in that line inside another span to style the
+      whole dataset.
+    </p>
+
+    <p>A figure element is used to give semantic meaning:</p>
+
+    <blockquote>"Usually [a figure]... is an image, an illustration, a diagram,
+      a code snippet, or a schema that is referenced in the main text, but that
+      can be moved to another page or to an appendix without affecting the main
+      flow".
+    </blockquote>
+
+    <p>Hover to zoom.</p>
+
+    <figure>
+      <figcaption>Ages of Northern Ireland politicians by term</figcaption>
+      <ul class="sparklist" id="sparklist">
+      </ul>
+    </figure>
+
+    <section id="counts">
+      <h3>Age Count</h3>
+    </section>
+
+    <section>
+      <h3>Sources:</h3>
+      <ul id="sources">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Markup</h3>
+      <pre><code class="language-markup">&lt;figure>
+  &lt;figcaption>Ages of Northern Ireland politicians by term&lt;/figcaption>
+
+  &lt;ul class="sparklist" id="sparklist">
+    &lt;li>&lt;a href="http://everypolitician.org/northern-ireland/assembly/term-table/2.html">term/2&lt;/a>
+      &lt;span class="sparkline">
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 12%;">&lt;span>?&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 20%;">&lt;span>40&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 62%;">&lt;span>50&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 72%;">&lt;span>60&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 46%;">&lt;span>70&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 10%;">&lt;span>80&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 2%;">&lt;span>90&lt;/span>&lt;/span>,
+        &lt;/span>
+      &lt;/span>
+    &lt;/li>
+    &lt;li>
+      &lt;a href="http://everypolitician.org/northern-ireland/assembly/term-table/3.html">term/3&lt;/a>
+      &lt;span class="sparkline">
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 10%;">&lt;span>?&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 10%;">&lt;span>30&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 36%;">&lt;span>40&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 72%;">&lt;span>50&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 70%;">&lt;span>60&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 42%;">&lt;span>70&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 2%;">&lt;span>80&lt;/span>&lt;/span>,
+        &lt;/span>
+        &lt;span class="sparklines-index">
+          &lt;span class="count" style="height: 2%;">&lt;span>90&lt;/span>&lt;/span>,
+        &lt;/span>
+      &lt;/span>
+    &lt;/li>
+    &lt;!-- ...etc. -->
+  &lt;/ul>
+&lt;/figure></code></pre>
+    </section>
+
+    {% include scripts.html %}
+    <script>
+    (function() {
+      function useData(d, country, terms) {
+        var data = JSON.parse(d);
+        showSources(data, 'sources');
+        showCounts(data, terms, 'counts');
+        showSparklist(data, terms, termsBaseURL, 'sparklist');
+      }
+
+      var termsBaseURL = 'http://everypolitician.org/northern-ireland/assembly/term-table/';
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/22cca2ea25e94f07997d8ef90c99429fada19bb8/data/Northern_Ireland/Assembly/ep-popolo-v1.0.json', 'Northern Ireland', ['term/1', 'term/2', 'term/3', 'term/4', 'term/5'], useData);
+    })();
+    </script>

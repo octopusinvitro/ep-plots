@@ -1,0 +1,98 @@
+.sparklist {
+  overflow: visible;
+  width: 100%;
+  margin:  0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    margin-right: 2em;
+    padding: 1em 0;
+    line-height: 2.5;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      .sparkline {
+        transform: translate(12.5em) scale(6);
+      }
+
+      .count {
+        color: $text-color;
+        background-color: $sparklines-bar-color;
+
+        &:hover,
+        &:focus {
+          color: $text-color;
+          background-color: $sparklines-bar-color-hover;
+        }
+      }
+    }
+  }
+
+  a {
+    display: inline-block;
+    width: 7em;
+    padding-right: 1em;
+    text-align: right;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color .3s ease;
+
+    &:hover,
+    &:focus {
+      color: $link-color-hover;
+    }
+  }
+}
+
+.sparkline {
+  display: inline-block;
+  height: 1em;
+  margin: 0 0.5em;
+  padding-bottom: .4em;
+  background-color: #eee;
+  transition: all .5s ease;
+  z-index: 10;
+}
+
+.sparklist a,
+.sparkline {
+  vertical-align: middle;
+  border:1px solid transparent
+}
+
+.sparklines-index {
+  position: relative;
+  float: left;
+  width:  .5em;
+  height: 1em;
+  background-color: #bbb;
+  color: transparent;
+
+  &:hover,
+  &:focus {
+    background-color: #eee;
+  }
+}
+
+.count {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left:   0;
+  width: 100%;
+  height: 0;
+  font-size: .2em;
+  text-shadow: none;
+  background-color: $sparklines-bg-color;
+
+  span {
+    position: absolute;
+    top: 100%;
+    display: block;
+    width: 100%;
+    text-align: center;
+    // letter-spacing: .1em;
+  }
+}

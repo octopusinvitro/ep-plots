@@ -129,6 +129,26 @@ h2 {
   color: $title-color;
 }
 
+blockquote {
+  color: $link-color-hover;
+  border-left: .5em solid $bg-color;
+  padding-left: 1em;
+}
+
+figure {
+  background-color: $bg-color;
+  padding: 2em;
+  margin: 0;
+}
+
+figcaption {
+  padding-top: 2em;
+  text-align: center;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: .8em;
+}
+
 code {
   padding: .2em .5em;
   font-size: .8em;

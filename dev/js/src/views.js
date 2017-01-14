@@ -1,3 +1,24 @@
+function createAgesParagraph(ages, term) {
+  var p       = document.createElement("p");
+  p.innerHTML = '<strong>Term:</strong> ' + term.replace('term/', '') + '. ' +
+                '<strong>Total members:</strong> ' + ages.length + '.';
+  return p;
+}
+
+function createAgesList(ages, binning) {
+  var ul       = document.createElement("ul");
+  ul.innerHTML = ages2list(applyBinning(itemsCount(ages), binning));
+  return ul;
+}
+
+function createSparkItems(data, term, termsBaseURL) {
+  var li       = document.createElement("li"),
+      url      = termsBaseURL + term.replace('term/', '') + '.html';
+  li.innerHTML = '<a href="' + url + '">' + term + '</a>' +
+                 '<span class="sparkline">' + ages2sparkLines(itemsCount(agesByTerm(data, term))) + '</span>'
+  return li;
+}
+
 function showCount(data, term, ids) {
   var partiesCountMap = itemsCount(getParties(membershipsByTerm(data["memberships"], term)));
   document.getElementById(ids["bars"]).appendChild(object2datalist(partiesCountMap));
@@ -40,4 +61,12 @@ function showBars(countries) {
     frag.appendChild(country2row(country, male, female, rowIndex));
   });
   document.querySelector("#table-bar-chart tbody").appendChild(frag);
+}
+
+function showSparklist(data, terms, termsBaseURL, id) {
+  var frag = document.createDocumentFragment();
+  terms.map(function(term) {
+    frag.appendChild(createSparkItems(data, term, termsBaseURL));
+  });
+  document.getElementById(id).appendChild(frag);
 }
