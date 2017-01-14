@@ -85,7 +85,18 @@ function ages2sparkLines(agesCounts) {
     if (binned.hasOwnProperty(age)) {
       list   += '<span class="sparklines-index"><span class="count" style="height: '
              + (binned[age] * scale) + '%;">'
-             + '<span>' + display + '</span></span>,</span> ';
+             + '<span>' + display(age) + '</span></span>,</span> ';
+    }
+  }
+  return list;
+}
+
+function ages2sparkLinesSVG(agesCounts, url) {
+  var binning = 10, list = '', position = 0, width = 6, binned = applyBinning(agesCounts, binning);
+  for (age in binned) {
+    if (binned.hasOwnProperty(age)) {
+      list += drawSVGBars(age, binned, position, width);
+      position += width;
     }
   }
   return list;

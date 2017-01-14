@@ -1,0 +1,123 @@
+---
+title: 2. SVG sparklines with rect and text
+description: Applied to the ages of Northern Ireland politicians by term
+layout: page
+---
+<p>Using rectangles in SVG we can draw bars and position them either with CSS or SVG attributes.</p>
+
+<p>Each <code>li</code> contains a <code>span</code> to hold the term name, and an <code>svg</code> to hold the sparklines. Each bar is represented by a rectangle using a <code>rect</code> element and a label using a <code>text</code> element. Both the bar and its label are grouped in a <code>g</code> element.</p>
+
+<figure>
+  <figcaption>Ages of Northern Ireland politicians by term</figcaption>
+
+  <ul id="svg-sparklist" class="svg-sparklist">
+  </ul>
+</figure>
+
+<section id="counts">
+  <h3>Age Count</h3>
+</section>
+
+<section>
+  <h3>Sources:</h3>
+  <ul id="sources">
+  </ul>
+</section>
+
+<section>
+  <h3>Markup</h3>
+  <pre><code class="language-markup">&lt;figure>
+  &lt;figcaption>Ages of Northern Ireland politicians by term&lt;/figcaption>
+
+  &lt;ul id="svg-sparklist" class="svg-sparklist">
+    &lt;li>
+      &lt;span class="svg-sparklines__term">
+        &lt;a href="http://everypolitician.org/northern-ireland/assembly/term-table/1.html">Term 1&lt;/a>
+      &lt;/span>
+      &lt;svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="chart" viewBox="0 0 45 55" aria-labelledby="title" role="img">
+        &lt;title id="title">A bar chart showing frequency of ages for term 1&lt;/title>
+        &lt;g transform="translate(0,0)">
+          &lt;rect class="svg-sparklines__bar" height="4" y="36" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">?&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(6,0)">
+          &lt;rect class="svg-sparklines__bar" height="5" y="35" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">40&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(12,0)">
+          &lt;rect class="svg-sparklines__bar" height="21" y="19" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">50&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(18,0)">
+          &lt;rect class="svg-sparklines__bar" height="39" y="1" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">60&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(24,0)">
+          &lt;rect class="svg-sparklines__bar" height="24" y="16" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">70&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(30,0)">
+          &lt;rect class="svg-sparklines__bar" height="16" y="24" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">80&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(36,0)">
+          &lt;rect class="svg-sparklines__bar" height="2" y="38" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">90&lt;/text>
+        &lt;/g>
+      &lt;/svg>
+    &lt;/li>
+    &lt;li>
+      &lt;span class="svg-sparklines__term">
+        &lt;a href="http://everypolitician.org/northern-ireland/assembly/term-table/2.html">Term 2&lt;/a>
+      &lt;/span>
+      &lt;svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="chart" viewBox="0 0 45 55" aria-labelledby="title" role="img">
+        &lt;title id="title">A bar chart showing frequency of ages for term 2&lt;/title>
+        &lt;g transform="translate(0,0)">
+          &lt;rect class="svg-sparklines__bar" height="6" y="34" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">?&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(6,0)">
+          &lt;rect class="svg-sparklines__bar" height="10" y="30" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">40&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(12,0)">
+          &lt;rect class="svg-sparklines__bar" height="31" y="9" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">50&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(18,0)">
+          &lt;rect class="svg-sparklines__bar" height="36" y="4" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">60&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(24,0)">
+          &lt;rect class="svg-sparklines__bar" height="23" y="17" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">70&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(30,0)">
+          &lt;rect class="svg-sparklines__bar" height="5" y="35" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">80&lt;/text>
+        &lt;/g>
+        &lt;g transform="translate(36,0)">
+          &lt;rect class="svg-sparklines__bar" height="1" y="39" width="6">&lt;/rect>
+          &lt;text class="svg-sparklines__text" x="1" y="44">90&lt;/text>
+        &lt;/g>
+      &lt;/svg>
+    &lt;/li>
+    <!-- ...etc. -->
+  &lt;/ul>
+&lt;/figure></code></pre>
+</section>
+
+{% include scripts.html %}
+<script>
+(function() {
+  function useData(d, country, terms) {
+    var data = JSON.parse(d);
+    showSources(data, 'sources');
+    showCounts(data, terms, 'counts');
+    showSparklistSVG(data, terms, termsBaseURL, 'svg-sparklist');
+  }
+
+  var termsBaseURL = 'http://everypolitician.org/northern-ireland/assembly/term-table/';
+  get('https://cdn.rawgit.com/everypolitician/everypolitician-data/22cca2ea25e94f07997d8ef90c99429fada19bb8/data/Northern_Ireland/Assembly/ep-popolo-v1.0.json', 'Northern Ireland', ['term/1', 'term/2', 'term/3', 'term/4', 'term/5'], useData);
+})();
+</script>

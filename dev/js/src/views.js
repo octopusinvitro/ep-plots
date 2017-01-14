@@ -19,6 +19,19 @@ function createSparkItems(data, term, termsBaseURL) {
   return li;
 }
 
+function createSparkItemsSVG(data, term, termsBaseURL) {
+  var li       = document.createElement("li"),
+      termNum  = term.replace('term/', ''),
+      url      = termsBaseURL + termNum + '.html';
+  li.innerHTML = '<span class="svg-sparklines__term"><a href="' + url + '">Term ' + termNum + '</a></span>' +
+                 '<svg version="1.1" xmlns="http://www.w3.org/2000/svg"' +
+                 'class="chart" viewBox="0 0 45 55" aria-labelledby="title" role="img">' +
+                 '  <title id="title">A bar chart showing frequency of ages for term ' + termNum + '</title>' +
+                 ages2sparkLinesSVG(itemsCount(agesByTerm(data, term)), url) +
+                 '</svg>';
+  return li;
+}
+
 function showCountInSVG(data, term, ids) {
   var partiesCountMap = itemsCount(getParties(membershipsByTerm(data["memberships"], term)));
   document.getElementById(ids['bars']).appendChild(object2svg(partiesCountMap));
@@ -74,6 +87,14 @@ function showSparklist(data, terms, termsBaseURL, id) {
   var frag = document.createDocumentFragment();
   terms.map(function(term) {
     frag.appendChild(createSparkItems(data, term, termsBaseURL));
+  });
+  document.getElementById(id).appendChild(frag);
+}
+
+function showSparklistSVG(data, terms, termsBaseURL, id) {
+  var frag = document.createDocumentFragment();
+  terms.map(function(term) {
+    frag.appendChild(createSparkItemsSVG(data, term, termsBaseURL));
   });
   document.getElementById(id).appendChild(frag);
 }

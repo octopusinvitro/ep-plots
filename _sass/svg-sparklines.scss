@@ -1,0 +1,58 @@
+.svg-sparklist {
+  background-color: $bg-color;
+  width: 100%;
+  margin:  0;
+  padding: 0;
+  overflow: visible;
+  cursor: pointer;
+
+  li {
+    list-style: none;
+    padding: 1em 0;
+    line-height: 2.5;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      .chart {
+        transform: scale(6) translate(2.3em, -1.4em);
+      }
+    }
+  }
+}
+
+.chart {
+  display: inline-block;
+  width: 15%;
+  transition: all .3s ease;
+
+  g {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      .svg-sparklines__bar,
+      .svg-sparklines__text {
+        fill: $svg-sparkline-color;
+      }
+    }
+  }
+}
+
+.svg-sparklines__bar,
+.svg-sparklines__text {
+  fill: $link-color-hover;
+  transition: fill .3s ease;
+}
+
+.svg-sparklines__text {
+  font-size: .15em;
+}
+
+.svg-sparklines__term {
+  display: inline-block;
+  margin-right: 2em;
+  color: $svg-sparkline-color;
+}
