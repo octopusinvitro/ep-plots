@@ -1,0 +1,90 @@
+---
+title: 5. SVG Pie charts with circles and stroke-dasharray
+description: Applied to Gender breakout per party in Mexico
+layout: page
+---
+    <p>Make a circle with a dashed stroke.<br>
+      Set the gap between dashes to equal the circumference of the circle<br>
+      Then you can set the width of the dashes to be the percentage to represent.<br>
+    </p>
+
+    <figure class="center">
+      <figcaption>Gender breakout per party</figcaption>
+
+      <div id="buttons" class="buttons-container"></div>
+
+      <svg class="svg-pie" viewBox="0 0 32 32">
+        <circle id="male"   r="16" cx="16" cy="16" stroke-dasharray=" 10 100" />
+        <circle id="female" r="16" cx="16" cy="16" stroke-dasharray=" 30 100" stroke-dashoffset="-10" />
+      </svg>
+
+      <div class="legend">
+        <p>Male:    <span id="male-perc"></span>
+        <p>Female:  <span id="female-perc"></span>
+        <p>Unknown: <span id="other-perc"></span>
+      </div>
+    </figure>
+
+    <p>Also, strokes are half inside and half outside.<br>
+      So the <code>stroke-width</code> should be the double of the circle radius.<br>
+      Then we can use the SVG element to fill the other half.<br>
+      Then we rotate it, so that it starts at 12:00.
+    </p>
+
+    <p><strong>Tip 1:</strong> If the circle radius is 16, the circumference is 100, and we can specify the width of the dash in percentages right away, with no extra calculations!<br>
+      Also, taking advantage of the scalable nature of SVG, we can use the <code>viewBox</code> attribute and make our circles have whichever size we want without changing the value of the radius.
+    </p>
+
+    <p><strong>Tip 2:</strong> With SVG you can show <strong>more than two values</strong>, as opposed to CSS. Just throw another circle with transparent fill, change the color of the stroke and set <code>stroke-dashoffset</code> to minus the previous-circle's stroke width.</p>
+
+    <p><strong>Accessibility:</strong> Replace SVGs with <code>&lt;div class="pie">20%&lt;/div></code> and inject the SVGs with JS (add a title for screen readers).</p>
+
+    <section>
+      <h3>Sources:</h3>
+      <ul id="sources">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Markup</h3>
+      <pre><code class="language-markup">&lt;figure class="center">
+  &lt;figcaption>Gender breakout per party&lt;/figcaption>
+
+  &lt;div id="buttons" class="buttons-container">
+    &lt;button data-party="PRI" class="active">PRI&lt;/button>
+    &lt;button data-party="PAN">PAN&lt;/button>
+    &lt;button data-party="PVE">PVE&lt;/button>
+    &lt;button data-party="MORENA">MORENA&lt;/button>
+    &lt;button data-party="PES">PES&lt;/button>
+    &lt;button data-party="PRD">PRD&lt;/button>
+    &lt;button data-party="MC">MC&lt;/button>
+    &lt;button data-party="PANAL">PANAL&lt;/button>
+    &lt;button data-party="_IND">NO PARTY&lt;/button>
+  &lt;/div>
+
+  &lt;svg class="svg-pie" viewBox="0 0 32 32">
+    &lt;circle id="male" r="16" cx="16" cy="16" style="stroke-dasharray: 30, 100;">&lt;/circle>
+    &lt;circle id="female" r="16" cx="16" cy="16" style="stroke-dasharray: 30, 100; stroke-dashoffset: -30;">&lt;/circle>
+  &lt;/svg>
+
+  &lt;div class="legend">
+    &lt;p>Male:    &lt;span id="male-perc">30%&lt;/span>&lt;/p>
+    &lt;p>Female:  &lt;span id="female-perc">30%&lt;/span>&lt;/p>
+    &lt;p>Unknown: &lt;span id="other-perc">41%&lt;/span>&lt;/p>
+  &lt;/div>
+&lt;/figure></code></pre>
+    </section>
+
+    {% include scripts.html %}
+    <script>
+    (function() {
+      function useData(d, country, terms) {
+        var data    = JSON.parse(d),
+            genders = totalGenders(data, terms[0]);
+        showSources(data, 'sources');
+        createButtons(genders, 'buttons');
+      }
+
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/1400578d29e8a094c48c14a34b5ae4a9712e8809/data/Mexico/Deputies/ep-popolo-v1.0.json', 'Mexico', ['term/63'], useData);
+    })();
+    </script>

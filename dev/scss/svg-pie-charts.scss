@@ -1,0 +1,45 @@
+.buttons-container {
+  margin: 2em auto;
+}
+
+.svg-pie,
+.legend {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.svg-pie {
+  display: inline-block;
+  width:  5em;
+  height: 5em;
+  margin-right: 2em;
+  transform: rotate(-90deg);
+  background: $plot-color-4;
+  border-radius: 50%;
+}
+
+circle {
+  stroke-width: 32;
+  transition: stroke-dasharray  .3s ease,
+              stroke-dashoffset .3s ease;
+  /*animation: fillup 5s linear infinite;*/
+}
+
+#male {
+  fill:  $plot-color-4;
+  stroke: $plot-color-3;
+}
+
+#female {
+  fill: transparent;
+  stroke: $plot-color-5;
+}
+
+#male-perc   { font-weight: bold; color: $plot-color-3; }
+#female-perc { font-weight: bold; color: $plot-color-5; }
+#other-perc  { font-weight: bold; color: $plot-color-4; }
+
+@keyframes fillup {
+  to { stroke-dasharray: 100 100; }
+}

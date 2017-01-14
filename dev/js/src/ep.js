@@ -9,6 +9,17 @@ function getParties(memberships) {
     return membership["on_behalf_of_id"];
   });
 }
+
+function membershipsByParty(memberships) {
+  var party = '';
+  return memberships.reduce(function(partyMap, membership) {
+    party = membership["on_behalf_of_id"];
+    partyMap[party] = partyMap[party] || []
+    partyMap[party].push(membership);
+    return partyMap;
+  }, {});
+}
+
 function personIds(memberships) {
   return memberships.map(function(membership) {
     return membership["person_id"];
@@ -21,10 +32,41 @@ function personsById(persons, ids) {
   });
 }
 
+function personsByParty(persons, partyMemberships) {
+  var ids, partyMembers = {};
+  for (var party in partyMemberships) {
+    if (partyMemberships.hasOwnProperty(party)) {
+      partyMemberIds      = personIds(partyMemberships[party]);
+      partyMembers[party] = personsById(persons, partyMemberIds);
+    }
+  }
+  return partyMembers;
+}
+
+function personsGenders(persons) {
+  return persons.map(function(person) {
+    return person['gender'];
+  });
+}
+
+function genderCount(persons) {
+  return itemsCount(personsGenders(persons))
+}
+
+function gendersByParty(partyMembers) {
+  var totalGenders = {};
+  for (var party in partyMembers) {
+    if (partyMembers.hasOwnProperty(party)) {
+      totalGenders[party] = genderCount(partyMembers[party]);
+    }
+  }
+  return totalGenders;
+}
+
 function ages(persons) {
   return persons.map(function(person) {
     return guaranteedAge(person["birth_date"]);
-  })
+  });
 }
 
 function agesByTerm(data, term) {
@@ -39,4 +81,11 @@ function gendersByTerm(data, term) {
   return persons.map(function(person) {
     return person["gender"];
   });
+}
+
+function totalGenders(data, term) {
+  var termMemberships  = membershipsByTerm(data["memberships"], term),
+      partyMemberships = membershipsByParty(termMemberships),
+      partyMembers     = personsByParty(data["persons"], partyMemberships);
+  return gendersByParty(partyMembers);
 }

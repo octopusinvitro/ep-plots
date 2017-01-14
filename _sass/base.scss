@@ -157,6 +157,26 @@ code {
   border-radius: .5em;
 }
 
+button {
+  margin:  .3em;
+  padding: 1em;
+  font-size: .8em;
+  text-transform: capitalize;
+  background-color: transparent;
+  border-radius: .5em;
+  outline: none;
+  border: 1px solid $guides-color;
+  cursor: pointer;
+  transition: background-color .1s ease, color .2s ease;
+  -webkit-appearance: none;
+
+  &.active {
+    background-color: $button-color;
+    color: $background-color;
+    border-color: transparent;
+  }
+}
+
 footer {
   text-align: center;
 }

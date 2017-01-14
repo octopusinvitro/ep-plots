@@ -1,3 +1,52 @@
+function setActiveClass(buttons, button) {
+  for(var i=0, n=buttons.children.length; i<n; i++) {
+    buttons.children[i].classList.remove('active');
+    button.classList.add('active');
+  }
+}
+
+function showGenderByPartyCounts(totalGenders) {
+  var maleCount   = percentage(totalGenders, 'male'),
+      femaleCount = percentage(totalGenders, 'female'),
+      otherCount  = percentage(totalGenders, 'undefined');
+
+  document.getElementById('male').style.strokeDasharray    = maleCount   + ' ' + 100;
+  document.getElementById('female').style.strokeDasharray  = femaleCount + ' ' + 100;
+  document.getElementById('female').style.strokeDashoffset = -maleCount;
+  document.getElementById('male-perc').innerHTML   = maleCount   + '%';
+  document.getElementById('female-perc').innerHTML = femaleCount + '%';
+  document.getElementById('other-perc').innerHTML  = otherCount  + '%';
+}
+
+function createButtons(totalGenders, id) {
+  var button,
+      frag    = document.createDocumentFragment(),
+      buttons = document.getElementById(id),
+      parties = Object.keys(totalGenders);
+
+  parties.map(function(party) {
+    button = document.createElement('button');
+    button.innerText = party;
+    if (party === "_IND") { button.innerText = "NO PARTY"; }
+    button.setAttribute('data-party', party);
+    frag.appendChild(button);
+  });
+
+  buttons.appendChild(frag);
+  buttons.addEventListener('click', function(e) {
+    if (e.target != e.currentTarget) {
+      var button = e.target,
+          party  = button.getAttribute('data-party');
+      showGenderByPartyCounts(totalGenders[party]);
+      setActiveClass(buttons, button);
+    }
+    e.stopPropagation();
+  });
+
+  showGenderByPartyCounts(totalGenders[Object.keys(totalGenders)[0]]);
+  setActiveClass(buttons, buttons.children[0]);
+}
+
 function createAgesParagraph(ages, term) {
   var p       = document.createElement("p");
   p.innerHTML = '<strong>Term:</strong> ' + term.replace('term/', '') + '. ' +
