@@ -113,3 +113,24 @@ function country2row(country, male, female, index) {
                  + 'px"><p>' + female + '%</p></td>';
   return tr;
 }
+
+function array2paragraphs(array) {
+  var par, frag = document.createDocumentFragment();
+  array.map (function(item) {
+    par = document.createElement('p');
+    par.innerHTML = '<strong>Term ' + item['term'] + ':</strong> ' + item['female'] + ' of ' + item['total']+ '.';
+    frag.appendChild(par);
+  });
+  return frag;
+}
+
+function counts2points(counts) {
+  var i=0, dataPoints = '';
+  counts.map(function(term) {
+    i++;
+    dataPoints += '<circle cx="' + (150 * i - 50) +
+                  '" cy="' + (370 - 360.0/75.0 * term['female']) +
+                  '" data-value="' + term['female'] + '" r="4"></circle>';
+  });
+  return dataPoints;
+}

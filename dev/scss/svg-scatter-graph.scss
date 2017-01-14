@@ -1,0 +1,58 @@
+.scatter-graph {
+  margin-top: 2em;
+}
+
+.scatter-graph-title {
+  font-size: 1.2em;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1em;
+  fill: $link-color;
+}
+
+.grid {
+  stroke: #ccc;
+  stroke-width: 1;
+
+  line {
+    stroke-dasharray: 3 10;
+
+    &:first-of-type {
+      stroke-dasharray: 0;
+    }
+  }
+}
+
+.x-labels,
+.y-labels {
+  font-size: .8em;
+  color: $text-color;
+}
+
+.x-labels {
+  text-anchor: middle;
+}
+
+.y-labels {
+  text-anchor: end;
+}
+
+.label-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  fill: $text-color;
+}
+
+.data {
+  fill: red;
+  stroke-width: 1;
+}
+
+circle {
+  cursor: pointer;
+
+  &:hover {
+    fill: $link-color;
+  }
+}

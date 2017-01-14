@@ -32,6 +32,18 @@ function createSparkItemsSVG(data, term, termsBaseURL) {
   return li;
 }
 
+function genderCounts(data, terms) {
+  var counts;
+  return terms.map(function(term) {
+    counts = itemsCount(gendersByTerm(data, term));
+    return {
+      'term':   term,
+      'female': counts['female'],
+      'total':  total(counts)
+    };
+  });
+}
+
 function showCountInSVG(data, term, ids) {
   var partiesCountMap = itemsCount(getParties(membershipsByTerm(data["memberships"], term)));
   document.getElementById(ids['bars']).appendChild(object2svg(partiesCountMap));
@@ -55,6 +67,10 @@ function showCounts(data, terms, id) {
     frag.appendChild(createAgesList(ages, binning));
   });
   document.getElementById(id).appendChild(frag);
+}
+
+function showFemaleCounts(data, terms, id) {
+  document.getElementById(id).appendChild(array2paragraphs(genderCounts(data, terms)));
 }
 
 function showTotals(countries, id) {
@@ -97,4 +113,8 @@ function showSparklistSVG(data, terms, termsBaseURL, id) {
     frag.appendChild(createSparkItemsSVG(data, term, termsBaseURL));
   });
   document.getElementById(id).appendChild(frag);
+}
+
+function showPoints(data, terms, id) {
+  document.getElementById(id).innerHTML = counts2points(genderCounts(data, terms));
 }

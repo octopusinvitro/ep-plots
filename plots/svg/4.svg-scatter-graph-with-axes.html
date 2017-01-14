@@ -1,0 +1,119 @@
+---
+title: 4. SVG scatter graph with line and circle
+description: Applied to Bulgarian number of female politicians per term
+layout: page
+---
+    <p>The axes and grid lines are made with the line element in SVG.<br>
+      The axes's labels and titles are made with the text element.<br>
+      The data points are made with the circle element.
+    </p>
+
+    <svg version="1.2" xmlns="http://www.w3.org/2000/svg" class="scatter-graph" aria-labelledby="title" role="img" height="500" width="800">
+      <title id="title">Bulgaria break-out of female politicians</title>
+      <text x="180" y="20" class="scatter-graph-title">Bulgarian female politicians across terms</text>
+
+      <g class="grid" id="xGrid">
+        <line x1="90"  x2="90"  y1="5" y2="371"></line>
+        <line x1="248" x2="248" y1="5" y2="371"></line>
+        <line x1="395" x2="395" y1="5" y2="371"></line>
+        <line x1="540" x2="540" y1="5" y2="371"></line>
+        <line x1="687" x2="687" y1="5" y2="371"></line>
+      </g>
+      <g class="grid" id="yGrid">
+        <line x1="90" x2="705" y1="370" y2="370"></line>
+        <line x1="90" x2="705" y1="245" y2="245"></line>
+        <line x1="90" x2="705" y1="128" y2="128"></line>
+        <line x1="90" x2="705" y1="12"  y2="12"></line>
+      </g>
+
+      <g class="x-labels">
+        <text x="100" y="400">39</text>
+        <text x="246" y="400">40</text>
+        <text x="392" y="400">41</text>
+        <text x="538" y="400">42</text>
+        <text x="684" y="400">43</text>
+        <text x="400" y="440" class="label-title">Term</text>
+      </g>
+      <g class="y-labels">
+        <text x="80" y="15">75</text>
+        <text x="80" y="131">50</text>
+        <text x="80" y="248">25</text>
+        <text x="80" y="373">0</text>
+        <text x="50" y="200" class="label-title">Count</text>
+      </g>
+
+      <g id="data" class="data" data-setname="Female politicians in the current term">
+      </g>
+    </svg>
+
+    <section id="person-count">
+      <h3>Female Count</h3>
+    </section>
+
+    <section>
+      <h3>Sources:</h3>
+      <ul id="sources">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Markup</h3>
+      <pre><code class="language-markup">&lt;svg version="1.2" xmlns="http://www.w3.org/2000/svg"
+  class="scatter-graph" aria-labelledby="title" role="img" height="500" width="800">
+
+  &lt;title id="title">Bulgaria break-out of female politicians&lt;/title>
+  &lt;text x="180" y="20" class="scatter-graph-title">Bulgarian female politicians across terms&lt;/text>
+
+  &lt;g class="grid" id="xGrid">
+    &lt;line x1="90" x2="90" y1="5" y2="371">&lt;/line>
+    &lt;line x1="248" x2="248" y1="5" y2="371">&lt;/line>
+    &lt;line x1="395" x2="395" y1="5" y2="371">&lt;/line>
+    &lt;line x1="540" x2="540" y1="5" y2="371">&lt;/line>
+    &lt;line x1="687" x2="687" y1="5" y2="371">&lt;/line>
+  &lt;/g>
+  &lt;g class="grid" id="yGrid">
+    &lt;line x1="90" x2="705" y1="370" y2="370">&lt;/line>
+    &lt;line x1="90" x2="705" y1="245" y2="245">&lt;/line>
+    &lt;line x1="90" x2="705" y1="128" y2="128">&lt;/line>
+    &lt;line x1="90" x2="705" y1="12" y2="12">&lt;/line>
+  &lt;/g>
+
+  &lt;g class="x-labels">
+    &lt;text x="100" y="400">39&lt;/text>
+    &lt;text x="246" y="400">40&lt;/text>
+    &lt;text x="392" y="400">41&lt;/text>
+    &lt;text x="538" y="400">42&lt;/text>
+    &lt;text x="684" y="400">43&lt;/text>
+    &lt;text x="400" y="440" class="label-title">Term&lt;/text>
+  &lt;/g>
+  &lt;g class="y-labels">
+    &lt;text x="80" y="15">75&lt;/text>
+    &lt;text x="80" y="131">50&lt;/text>
+    &lt;text x="80" y="248">25&lt;/text>
+    &lt;text x="80" y="373">0&lt;/text>
+    &lt;text x="50" y="200" class="label-title">Count&lt;/text>
+  &lt;/g>
+
+  &lt;g id="data" class="data" data-setname="Female politicians in the current term">
+    &lt;circle cx="100" cy="259.6" data-value="23" r="4">&lt;/circle>
+    &lt;circle cx="250" cy="254.8" data-value="24" r="4">&lt;/circle>
+    &lt;circle cx="400" cy="91.6" data-value="58" r="4">&lt;/circle>
+    &lt;circle cx="550" cy="58" data-value="65" r="4">&lt;/circle>
+    &lt;circle cx="700" cy="115.6" data-value="53" r="4">&lt;/circle>
+  &lt;/g>
+&lt;/svg></code></pre>
+    </section>
+
+    {% include scripts.html %}
+    <script>
+    (function() {
+      function useData(d, country, terms) {
+        var data = JSON.parse(d);
+        showSources(data, 'sources');
+        showFemaleCounts(data, terms, 'person-count');
+        showPoints(data, terms, 'data');
+      }
+
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/b89242191a11976d125fdf6ba3a4b3a2e8599726/data/Bulgaria/National_Assembly/ep-popolo-v1.0.json', 'Bulgaria', ['term/39', 'term/40', 'term/41', 'term/42', 'term/43'], useData);
+    })();
+    </script>
