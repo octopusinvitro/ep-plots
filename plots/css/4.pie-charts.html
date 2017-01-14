@@ -1,0 +1,103 @@
+---
+title: 4. CSS Pie Charts
+description: Applied to Scandinavian Gender breakout for Norway, Sweden and Denmark  for current term
+layout: page
+---
+    <p>Only needs one element with a CSS gradient of two colors, half and half.<br>
+      It uses a rotated pseudo-element, whose bg color is changed for the second half.<br>
+      It's accessible because the data is in the element.</p>
+    <p>The percentage is also set on the pseudo-element, but we cannot set inline styles on pseudo-elements, so we use a paused animation and inherit the <code>animation-delay</code> property from an inline style in the parent.</p>
+
+    <p><strong>Caveat:</strong> Can only show two values per pie!<br>
+      So the plot below is misleading because we have three values (male, female, other/unknown)</p>
+
+    <figure class="center">
+      <figcaption>Scandinavian Gender breakout for current term</figcaption>
+      <div class="pie" style="animation-delay: -40s">
+        <span class="pie-label">Norway</span>
+        <span class="pie-value">40%</span>
+      </div>
+      <div class="pie" style="animation-delay: -45s">
+        <span class="pie-label">Sweden</span>
+        <span class="pie-value">45%</span>
+      </div>
+      <div class="pie" style="animation-delay: -35s">
+        <span class="pie-label">Denmark</span>
+        <span class="pie-value">35%</span>
+      </div>
+    </figure>
+
+    <section>
+      <h3>Gender Count</h3>
+      <p><strong>Norway</strong> Total members: <span id="total-norway"></span>.</p>
+      <ul id="gender-count-norway">
+      </ul>
+      <p><strong>Sweden</strong> Total members: <span id="total-sweden"></span>.</p>
+      <ul id="gender-count-sweden">
+      </ul>
+      <p><strong>Denmark</strong> Total members: <span id="total-denmark"></span>.</p>
+      <ul id="gender-count-denmark">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Sources:</h3>
+      <strong>Norway</strong>
+      <ul id="sources-norway">
+      </ul>
+      <strong>Sweden</strong>
+      <ul id="sources-sweden">
+      </ul>
+      <strong>Denmark</strong>
+      <ul id="sources-denmark">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Markup</h3>
+      <pre><code class="language-markup">&lt;figure class="center">
+  &lt;figcaption>Scandinavian Gender breakout for current term&lt;/figcaption>
+  &lt;div class="pie" style="animation-delay: -40s">
+    &lt;span class="pie-label">Norway&lt;/span>
+    &lt;span class="pie-value">40%&lt;/span>
+  &lt;/div>
+  &lt;div class="pie" style="animation-delay: -45s">
+    &lt;span class="pie-label">Sweden&lt;/span>
+    &lt;span class="pie-value">45%&lt;/span>
+  &lt;/div>
+  &lt;div class="pie" style="animation-delay: -35s">
+    &lt;span class="pie-label">Denmark&lt;/span>
+    &lt;span class="pie-value">35%&lt;/span>
+  &lt;/div>
+&lt;/figure></code></pre>
+    </section>
+
+    {% include scripts.html %}
+    <script>
+    (function() {
+      var filesLoaded    =  0,
+          countries      = [],
+          totalCountries =  3;
+
+      function useData() {
+        showCountriesSources(countries, 'sources-');
+        showTotals(countries, 'total-');
+        showGenderCounts(countries, 'gender-count-');
+      }
+
+      function addData(d, country, terms) {
+        var data = JSON.parse(d);
+        countries.push({'data': data, 'name': country, 'term': terms[0]});
+        filesLoaded += 1;
+        if (filesLoaded === totalCountries) {
+           useData();
+        }
+      }
+
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/af8c175e07a1e0779af957d7d5f12e16e0328573/data/Norway/Storting/ep-popolo-v1.0.json', 'Norway', ['term/2013-2017'], addData);
+
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/f4c8523aaa36c568eaf4673c7b1f5bd7e261c232/data/Sweden/Riksdag/ep-popolo-v1.0.json', 'Sweden', ['term/2014'], addData);
+
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/5a45e2279c2fb77e2a59b60a61a3e2a26d36aec3/data/Denmark/Folketing/ep-popolo-v1.0.json', 'Denmark', ['term/2015'], addData);
+    })();
+    </script>

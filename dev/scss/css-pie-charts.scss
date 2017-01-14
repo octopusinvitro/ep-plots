@@ -1,0 +1,51 @@
+.pie {
+  position: relative;
+  display: inline-block;
+  width:  100px;
+  height: 100px;
+  margin: 2em;
+  border-radius: 50%;
+  background: $plot-color-4;
+  background-image: linear-gradient(to right, transparent 50%, $plot-color-3 0);
+
+  &:before {
+    content: '';
+    display: block;
+    margin-left: 50%;
+    height: 100%;
+    border-radius: 0 100% 100% 0 / 50%;
+    background-color: inherit;
+    transform-origin: left;
+    animation: spin 50s linear infinite,
+               bg 100s step-end infinite;
+    animation-play-state: paused;
+    animation-delay: inherit;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(.5turn); }
+}
+
+@keyframes bg {
+  50% { background: $plot-color-3; }
+}
+
+.pie-label {
+  font-weight: bold;
+  color: $plot-color-3;
+}
+
+.pie-value {
+  position: absolute;
+  top:  0;
+  left: 0;
+  width:   90px;
+  height: 100px;
+  line-height: 100px;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-shadow: .1em .1em .5em black;
+  color: #fff;
+  text-align: right;
+}
