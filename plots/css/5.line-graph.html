@@ -1,0 +1,76 @@
+---
+title: 5. CSS line graphs with datalists
+description: Applied to average ages by term for Turkey
+layout: page
+---
+    <p>(Beware! This country's data is humongous!)</p>
+    <p>A <code>dl</code> element is used to represent the X and Y axis.</p>
+
+    <p>Plot is a WIP yet! sorry! For now, enjoy a placeholder :)</p>
+
+    <figure>
+      <figcaption>Average age per term of Turkish politicians</figcaption>
+      <dl class="csslinegraph">
+
+        <dt>Term 15</dt>
+        <dd class="first"><span class="pi0 i1"><em>3</em></span></dd>
+
+        <dt>Term 16</dt>
+        <dd><span class="pi1 i10"><em>36</em></span></dd>
+
+        <dt>Term 17</dt>
+        <dd><span class="pd11 d d4"><em>23</em></span></dd>
+
+        <dt>Term 18</dt>
+        <dd><span class="pi7 i10"><em>56</em></span></dd>
+
+        <dt>Term 19</dt>
+        <dd><span class="pd17 d d0"><em>55</em></span></dd>
+
+        <dt>Term 20</dt>
+        <dd><span class="pd17 d d7"><em>32</em></span></dd>
+
+        <dt>Term 21</dt>
+        <dd><span class="pi10 i14"><em>79</em></span></dd>
+
+        <dt>Term 22</dt>
+        <dd><span class="pd24 d d2"><em>74</em></span></dd>
+
+        <dt>Term 23</dt>
+        <dd><span class="pi22 i1"><em>77</em></span></dd>
+
+        <dt>Term 24</dt>
+        <dd><span class="pi23 i2"><em>83</em></span></dd>
+
+        <dt>Term 25</dt>
+        <dd><span class="pd25 d d15"><em>34</em></span></dd>
+
+        <dt>Term 26</dt>
+        <dd><span class="pi10 i2"><em>39</em></span></dd>
+
+      </dl>
+    </figure>
+
+    <section>
+      <h3>Sources:</h3>
+      <ul id="sources">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Markup</h3>
+      <pre><code class="language-markup"></code></pre>
+    </section>
+
+    {% include scripts.html %}
+    <script>
+    // (function() {
+    //   function useData(d, country, terms) {
+    //     var data = JSON.parse(d);
+    //     showSources(data, 'sources');
+    //   }
+    //
+    //   var termsBaseURL = 'http://everypolitician.org/turkey/assembly/term-table/';
+    //   get('https://cdn.rawgit.com/everypolitician/everypolitician-data/a93c46634b6cd3fd9716ec5ef28343cc9cf699cd/data/Turkey/Assembly/ep-popolo-v1.0.json', 'Turkey', ['term/15', 'term/16', 'term/17', 'term/18', 'term/19', 'term/20', 'term/21', 'term/22', 'term/23', 'term/24', 'term/25', 'term/26'], useData);
+    // })();
+    </script>
