@@ -1,7 +1,40 @@
 ---
 layout: default
+title: Plots with CSS, JS and SVG
 ---
+<header class="hero">
+  <h1>EveryPolitician plots</h1>
+  <h2>Using web technologies (CSS, JS and SVG)</h2>
 
-<ul>
-  <li><a href="/plots/css/1.bar-charts-with-datalists">foo</a></li>
-</ul>
+  <p>Visualizing data makes it easier to understand, analyze, and communicate. This site is the result of teaching myself how to use web technologies (HTML, CSS, JS, SVG, etc.) to make interactive plots. The first batch uses CSS, the second batch uses SVG, and a third batch is coming which uses a JS library called D3.js.</p>
+
+  <p>The dataset used for the plots is taken from the <a href="http://everypolitician.org/">EveryPolitician</a> project. Part of the idea behind this was also to explore the dataset's possibilities and limitations in terms of the information you can obtain from it, how difficult is to obtain, and how to use it in a meaningful way. For example, most of the data is discrete, like gender or ages.</p>
+
+  <p class="disclaimer"><strong>Disclaimers:</strong>
+    1. This is a work in progress.<br>
+    2. The data is fetched using AJAX, although it could be served by your favorite backend framework. EveryPolitician's Popolo files are close to 1Mb big and take around 1-2 seconds to download in a fast connection (55Mbps).</p>
+</header>
+
+<article class="wrapper examples-grid">
+  <section class="examples-grid__title">
+    <h3>Plots with CSS</h3>
+    <p>These techniques are CSS-pure, although for the examples the elements and it's values are generated dinamically using JavaScript from the popolo file. The markup is shown at the bottom of each.</p>
+  </section>
+
+{% for page in site.pages %}{% if page.url contains '/plots/css/' %}
+  <section class="examples-grid__item">
+    <h3><a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a></h3>
+    <p>{{ page.description | escape }}</p>
+  </section>{% endif %}{% endfor %}
+
+  <section class="examples-grid__title">
+    <h3>Plots with SVG</h3>
+    <p>These techniques use SVG markup to produce the different elements. They are again generated dinamically using JavaScript but you don't need JavaScript for these techniques to work.</p>
+  </section>
+
+{% for page in site.pages %}{% if page.url contains '/plots/svg/' %}
+  <section class="examples-grid__item">
+    <h3><a href="{{ page.url | relative_url }}">{{ page.title | escape }}</a></h3>
+    <p>{{ page.description | escape }}</p>
+  </section>{% endif %}{% endfor %}
+</article>
