@@ -1,0 +1,110 @@
+---
+title: 1. SVG Bar charts with text and rect
+description: 'Applied to Mexico: Percentage of deputies per party in the current term (LXIII)'
+layout: page
+---
+    <p>All the elements are drawn in an inline SVG. They can be styled with CSS from the site's CSS files and made interactive with JS. They are also <a href="https://www.sitepoint.com/tips-accessible-svg/">accessible</a>.</p>
+
+    <p>The parties and percentages, are made with the <code>text</code> element. The bars are made with the <code>rect</code> element. Each bar is grouped in its own group element <code>g</code>.</p>
+
+    <p>Classes applied directly to group elements through the <code>class</code> attribute won't apply, but you can still apply styles to group elements using the cascade, for example <code>svg g { //styles }</code>.</p>
+
+    <figure class="center">
+      <figcaption>Mexico: Percentage of deputies per party in the current term (LXIII)</figcaption>
+        <svg id="svg-bars" class="svg-bars-plot" viewBox="0 0 380 380" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg">
+
+        <title id="title">A bar chart showing percentages</title>
+        <desc id="desc">Mexico: Percentage of deputies per party in the current term (LXIII)</desc>
+      </svg>
+    </figure>
+
+    <section>
+      <h3>Party Count</h3>
+      <p>Total members: <span id="total"></span>.</p>
+      <ul id="party-count">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Sources:</h3>
+      <ul id="sources">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Markup</h3>
+      <pre><code class="language-markup">&lt;figure>
+  &lt;figcaption>Mexico: Percentage of deputies per party in the current term (LXIII)&lt;/figcaption>
+
+  &lt;svg id="svg-bars" class="svg-bars" viewBox="0 0 380 380"
+    aria-labelledby="title desc" role="img"
+    xmlns="http://www.w3.org/2000/svg">
+
+    &lt;title id="title">A bar chart showing percentages&lt;/title>
+    &lt;desc id="desc">Mexico: Percentage of deputies per party in the current term (LXIII)&lt;/desc>
+
+    &lt;g class="svg-bar">
+      &lt;text y="20" dy=".35em">PRI&lt;/text>
+      &lt;text y="20" dy=".35em" x="80">41%&lt;/text>
+      &lt;rect fill="#5AADE3" width="205" height="30" x="150" y="0">&lt;/rect>
+    &lt;/g>
+    &lt;g class="svg-bar">
+      &lt;text y="60" dy=".35em">PAN&lt;/text>
+      &lt;text y="60" dy=".35em" x="80">22%&lt;/text>
+      &lt;rect fill="#5AADE3" width="110" height="30" x="150" y="40">&lt;/rect>
+    &lt;/g>
+    &lt;g class="svg-bar">
+      &lt;text y="100" dy=".35em">PVE&lt;/text>
+      &lt;text y="100" dy=".35em" x="80">9%&lt;/text>
+      &lt;rect fill="#5AADE3" width="45" height="30" x="150" y="80">&lt;/rect>
+    &lt;/g>
+    &lt;g class="svg-bar">
+      &lt;text y="140" dy=".35em">MORENA&lt;/text>
+      &lt;text y="140" dy=".35em" x="80">7%&lt;/text>
+      &lt;rect fill="#5AADE3" width="35" height="30" x="150" y="120">&lt;/rect>
+    &lt;/g>
+    &lt;g class="svg-bar">
+      &lt;text y="180" dy=".35em">PES&lt;/text>
+      &lt;text y="180" dy=".35em" x="80">2%&lt;/text>
+      &lt;rect fill="#5AADE3" width="10" height="30" x="150" y="160">&lt;/rect>
+    &lt;/g>
+    &lt;g class="svg-bar">
+      &lt;text y="220" dy=".35em">PRD&lt;/text>
+      &lt;text y="220" dy=".35em" x="80">12%&lt;/text>
+      &lt;rect fill="#5AADE3" width="60" height="30" x="150" y="200">&lt;/rect>
+    &lt;/g>
+    &lt;g class="svg-bar">
+      &lt;text y="260" dy=".35em">MC&lt;/text>
+      &lt;text y="260" dy=".35em" x="80">5%&lt;/text>
+      &lt;rect fill="#5AADE3" width="25" height="30" x="150" y="240">&lt;/rect>
+    &lt;/g>
+    &lt;g class="svg-bar">
+      &lt;text y="300" dy=".35em">PANAL&lt;/text>
+      &lt;text y="300" dy=".35em" x="80">3%&lt;/text>
+      &lt;rect fill="#5AADE3" width="15" height="30" x="150" y="280">&lt;/rect>
+    &lt;/g>
+    &lt;g class="svg-bar">
+      &lt;text y="340" dy=".35em">_IND&lt;/text>
+      &lt;text y="340" dy=".35em" x="80">0%&lt;/text>
+      &lt;rect fill="#5AADE3" width="0" height="30" x="150" y="320">&lt;/rect>
+    &lt;/g>
+  &lt;/svg>
+&lt;/figure></code></pre>
+    </section>
+
+    {% include scripts.html %}
+    <script>
+    (function() {
+      function useData(d, country, terms) {
+        var data = JSON.parse(d);
+        showSources(data, 'sources');
+        showCountInSVG(data, terms[0], {
+          'bars':       'svg-bars',
+          'partyCount': 'party-count',
+          'totalCount': 'total'
+        });
+      }
+
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/1400578d29e8a094c48c14a34b5ae4a9712e8809/data/Mexico/Deputies/ep-popolo-v1.0.json', 'Mexico', ['term/63'], useData);
+    })();
+    </script>

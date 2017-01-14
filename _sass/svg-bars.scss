@@ -1,0 +1,28 @@
+.svg-bars-plot {
+  margin-top: 1em;
+  padding: 2em;
+  background-color: #eee;
+  max-width: 73%;
+}
+
+.svg-bar__bar {
+  fill: $svg-bar-color;
+  height: 2em;
+  transition: fill .3s ease;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    fill: $svg-bar-color-hover;
+  }
+}
+
+.svg-bar__text {
+  color: #d35400;
+  transition: color .3s ease;
+
+  &:hover,
+  &:focus {
+    color: $svg-bar-color-hover;
+  }
+}

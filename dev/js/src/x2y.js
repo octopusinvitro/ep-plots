@@ -26,6 +26,28 @@ function object2datalist(object) {
   return frag;
 }
 
+function object2rect(object, key, textY, rectY) {
+  var svgNS = 'http://www.w3.org/2000/svg',
+      perc  = percentage(object, key),
+      group = document.createElementNS(svgNS, 'g');
+  group.innerHTML = '<text class="svg-bar__text" y="'+ (10 + textY) + '" dy=".35em">' + key + '</text>' +
+                    '<text class="svg-bar__text" y="'+ (10 + textY) + '" dy=".35em" x="80">' + perc + '%</text>' +
+                    '<rect class="svg-bar__bar" width="' + (5 * perc) + '" height="30" x="150" y="' + rectY + '"></rect>';
+  return group;
+}
+
+function object2svg(object) {
+  var frag = document.createDocumentFragment(), textY = 10, rectY = 0;
+  for (var key in object) {
+    if (object.hasOwnProperty(key)) {
+      frag.appendChild(object2rect(object, key, textY, rectY));
+      textY += 40;
+      rectY += 40;
+    }
+  }
+  return frag;
+}
+
 function gender2list(object) {
   var unknown = total(object) - object['male'] - object['female'];
   return '<li><strong>Male count:</strong> '    + object['male']   + '</li>' +
