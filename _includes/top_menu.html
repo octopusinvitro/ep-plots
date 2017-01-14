@@ -1,0 +1,29 @@
+{% assign sorted_pages = site.pages | sort:'url' %}
+{% for site_page in sorted_pages %}{% if site_page.url == page.url %}
+{% assign index = forloop.index0 | minus: 1 %}{% assign previous = sorted_pages[index] %}
+{% assign index = forloop.index0 | plus:  1 %}{% assign next     = sorted_pages[index] %}
+{% if previous.url contains '/plots/css/' or previous.url contains '/plots/svg/' %}
+  {% assign previous_url = previous.url %}{% assign previous_title = previous.title %}
+{% endif %}
+{% if next.url contains '/plots/css/' or next.url contains '/plots/svg/' %}
+  {% assign next_url = next.url %}{% assign next_title = next.title %}
+{% endif %}
+<nav class="top-menu">
+  <ul>
+    <li>
+      <a rel= "prev" class="top-menu__prev" href="{{ previous_url }}">
+        {% include arrow-left.svg %}
+        <span class="top-menu__text">{{ previous_title }}</span>
+      </a>
+    </li>
+    <li>
+      <a class="top-menu__home" href="/">{% include home.svg %}</a>
+    </li>
+    <li>
+      <a rel="next" class="top-menu__next" href="{{ next_url }}">
+        <span class="top-menu__text">{{ next_title }}</span>
+        {% include arrow-right.svg %}
+      </a>
+    </li>
+  </ul>
+</nav>{% endif %}{% endfor %}
