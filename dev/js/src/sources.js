@@ -7,3 +7,9 @@ function listOfUrls(urls) {
 function showSources(data, id) {
   document.getElementById(id).innerHTML = listOfUrls(data["meta"]["sources"]);
 }
+
+function showCountriesSources(countries, id) {
+  countries.map(function(country) {
+    showSources(country.data, id + country.name.toLowerCase());
+  });
+}

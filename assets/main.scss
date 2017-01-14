@@ -13,6 +13,9 @@ $spacing-unit:     1.5em;
 
 $title-color: #5AADE3;
 
+/* css bar tables */
+$guides-width: 52em;
+
 @import
   "normalize",
   "colors",
@@ -20,6 +23,7 @@ $title-color: #5AADE3;
   "styles",
   "top-menu",
   "css-bars",
+  "css-bars-tables",
   "prism",
   "mediaqueries",
   "print";

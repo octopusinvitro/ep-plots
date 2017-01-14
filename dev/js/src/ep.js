@@ -9,3 +9,21 @@ function getParties(memberships) {
     return membership["on_behalf_of_id"];
   });
 }
+function personIds(memberships) {
+  return memberships.map(function(membership) {
+    return membership["person_id"];
+  });
+}
+
+function personsById(persons, ids) {
+  return persons.filter(function(person) {
+    return ids.some(function(id) { return id === person.id })
+  });
+}
+function gendersByTerm(data, term) {
+  var memberships = membershipsByTerm(data["memberships"], term),
+      persons     = personsById(data["persons"], personIds(memberships));
+  return persons.map(function(person) {
+    return person["gender"];
+  });
+}

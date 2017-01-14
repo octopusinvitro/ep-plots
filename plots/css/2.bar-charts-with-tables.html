@@ -1,0 +1,120 @@
+---
+title: 2. Bar Charts with tables
+description: Applied to Scandinavian Gender breakout for Norway, Sweden and Denmark for current term
+layout: page
+---
+    <p>Header columns are used as legend.<br>
+    Caption is used as plot title.<br>
+    Body headers are used as country labels.<br>
+    Body columns/cells are used as bars.<br>
+    A set of divs is used as ticks.</p>
+
+    <table id="table-bar-chart" class="table-bar-chart">
+      <caption class="bar-chart__caption">Scandinavian Gender breakout for current term</caption>
+      <thead>
+        <tr class="header-row">
+          <th class="header-column"></th>
+          <th class="header-column male">Male</th>
+          <th class="header-column female">Female</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+
+    <div class="guides">
+      <div class="guide" style="height: 60px;"><p>100%</p></div>
+      <div class="guide" style="height: 60px;"><p> 80%</p></div>
+      <div class="guide" style="height: 60px;"><p> 60%</p></div>
+      <div class="guide" style="height: 60px;"><p> 40%</p></div>
+      <div class="guide" style="height: 60px;"><p> 20%</p></div>
+    </div>
+
+    <section>
+      <h3>Gender Count</h3>
+      <p><strong>Norway</strong> Total members: <span id="total-norway"></span>.</p>
+      <ul id="gender-count-norway">
+      </ul>
+      <p><strong>Sweden</strong> Total members: <span id="total-sweden"></span>.</p>
+      <ul id="gender-count-sweden">
+      </ul>
+      <p><strong>Denmark</strong> Total members: <span id="total-denmark"></span>.</p>
+      <ul id="gender-count-denmark">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Sources:</h3>
+      <strong>Norway</strong>
+      <ul id="sources-norway">
+      </ul>
+      <strong>Sweden</strong>
+      <ul id="sources-sweden">
+      </ul>
+      <strong>Denmark</strong>
+      <ul id="sources-denmark">
+      </ul>
+    </section>
+
+    <section>
+      <h3>Markup</h3>
+      <pre><code class="language-markup">&lt;table id="table-bar-chart" class="table-bar-chart">
+  &lt;caption class="bar-chart__caption">Scandinavian Gender breakout&lt;/caption>
+  &lt;thead>
+    &lt;tr class="header-row">
+      &lt;th class="header-column">&lt;/th>
+      &lt;th class="header-column male">Male&lt;/th>
+      &lt;th class="header-column female">Female&lt;/th>
+    &lt;/tr>
+  &lt;/thead>
+  &lt;tbody>
+    &lt;tr id="row-1" class="country-row">
+      &lt;th scope="row">Norway&lt;/th>
+      &lt;td class="male bar-tables" style="height: 150px">&lt;p>60%&lt;/p>&lt;/td>
+      &lt;td class="female bar-tables" style="height: 92px">&lt;p>40%&lt;/p>&lt;/td>
+    &lt;/tr>
+    &lt;tr id="row-2" class="country-row">
+      &lt;th scope="row">Sweden&lt;/th>
+      &lt;td class="male bar-tables" style="height: 137.5px">&lt;p>55%&lt;/p>&lt;/td>
+      &lt;td class="female bar-tables" style="height: 103.50">&lt;p>45%&lt;/p>&lt;/td>
+    &lt;/tr>
+    &lt;tr id="row-3" class="country-row">
+      &lt;th scope="row">Denmark&lt;/th>
+      &lt;td class="male bar-tables" style="height: 157.5px">&lt;p>63%&lt;/p>&lt;/td>
+      &lt;td class="female bar-tables" style="height: 80.5px">&lt;p>35%&lt;/p>&lt;/td>
+    &lt;/tr>
+  &lt;/tbody>
+&lt;/table></code></pre>
+    </section>
+
+
+    {% include scripts.html %}
+    <script>
+    (function() {
+      var filesLoaded    = 0,
+          countries      = [],
+          totalCountries = 3;
+
+      function useData() {
+        showCountriesSources(countries, 'sources-');
+        showTotals(countries, 'total-');
+        showGenderCounts(countries, 'gender-count-');
+        showBars(countries);
+      }
+
+      function addData(d, country, terms) {
+        var data = JSON.parse(d);
+        countries.push({'data': data, 'name': country, 'term': terms[0]});
+        filesLoaded += 1;
+        if (filesLoaded === totalCountries) {
+          useData();
+        }
+      }
+
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/af8c175e07a1e0779af957d7d5f12e16e0328573/data/Norway/Storting/ep-popolo-v1.0.json', 'Norway', ['term/2013-2017'], addData);
+
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/f4c8523aaa36c568eaf4673c7b1f5bd7e261c232/data/Sweden/Riksdag/ep-popolo-v1.0.json', 'Sweden', ['term/2014'], addData);
+
+      get('https://cdn.rawgit.com/everypolitician/everypolitician-data/5a45e2279c2fb77e2a59b60a61a3e2a26d36aec3/data/Denmark/Folketing/ep-popolo-v1.0.json', 'Denmark', ['term/2015'], addData);
+    })();
+    </script>

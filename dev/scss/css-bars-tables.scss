@@ -1,0 +1,130 @@
+.table-bar-chart {
+  position: relative;
+  display: block;
+  width:  36em;
+  height: 25em;
+  margin: 1.1em 0 0 5em;
+  background-color: $bg-color;
+
+  td {
+    transition: all .3s ease;
+
+    &:hover {
+      background-color: #B0C151;
+      opacity: .9;
+      color: $text-color;
+    }
+  }
+}
+
+.bar-chart__caption {
+  display: block;
+  caption-side: top;
+  width: 100%;
+  padding: 1em 0;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: .8em;
+}
+
+.header-row,
+.header-column,
+.country-row,
+.country-row th,
+.bar-tables {
+  position: absolute;
+  bottom:  0;
+  width: 10em;
+  margin:  0;
+  padding: 0;
+  text-align: center;
+}
+
+.bar-tables {
+  z-index: 10;
+  width: 5em;
+  padding: 1em .5em;
+  font-size: .8em;
+  color: $text-color;
+
+  p {
+    margin:  0;
+    padding: 0;
+  }
+}
+
+.header-row,
+.header-column {
+  width:  7em;
+}
+
+.header-row {
+  left: 90%;
+  top:   50%;
+  bottom: auto;
+  margin: -2.5em 0 0 5em;
+  color: #555;
+}
+
+.header-column {
+  height:  .3em;
+  line-height: 2;
+  padding: 0 1em;
+  vertical-align: center;
+}
+
+.header-column.male {
+  top: -2.5em;
+  left: -26em;
+  width: 3em;
+}
+
+.header-column.female {
+  top: -2.5em;
+  left: -18em;
+  width: 3em;
+}
+
+.country-row {
+  height:      296px;
+  padding-top:   2px;
+  color: $text-color;
+}
+
+#row-1 {left: 0;    }
+#row-2 {left: 12em; }
+#row-3 {left: 24em; }
+
+.country-row th {
+  top: 100%;
+  padding: 1em 0;
+}
+
+.male {
+  left: 1em;
+  background-color: $plot-color-1;
+}
+
+.female {
+  left: 7.5em;
+  background-color: $plot-color-2;
+}
+
+.guides {
+  margin:  -27em 0 5em 7em;
+  width: $guides-width;
+  font-size: .7em;
+}
+
+.guide {
+  position: relative;
+  border-top: 2px dotted $guides-color;
+  width: $guides-width;
+
+  p {
+    position: absolute;
+    left: -7em;
+    top: -.8em;
+    margin: 0 0 0 0.5em;
+  }
+}

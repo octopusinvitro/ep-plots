@@ -21,3 +21,22 @@ function object2datalist(object) {
   }
   return frag;
 }
+
+function gender2list(object) {
+  var unknown = total(object) - object['male'] - object['female'];
+  return '<li><strong>Male count:</strong> '    + object['male']   + '</li>' +
+         '<li><strong>Female count:</strong> '  + object['female'] + '</li>' +
+         '<li><strong>Other/Unknown:</strong> ' + unknown + '</li>';
+}
+
+function country2row(country, male, female, index) {
+  var tr       = document.createElement("tr");
+  tr.id        = 'row-' + index;
+  tr.className = 'country-row';
+  tr.innerHTML = '<th scope="row">' + country.name + '</th>' +
+                 '<td class="male bar-tables"   style="height: ' + male   * 2.5
+                 + 'px"><p>' + male   + '%</p></td>' +
+                 '<td class="female bar-tables" style="height: ' + female * 2.3
+                 + 'px"><p>' + female + '%</p></td>';
+  return tr;
+}
