@@ -12,16 +12,16 @@
   "devDependencies": {
     "browser-sync": "^2.12.3",
     "del": "*",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^6.1.1",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.0.0-alpha",
-    "gulp-uglify": "^1.5.3"
+    "gulp-uglify": "^3.0.2"
   },
   "dependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-sass": "^4.0.2"
   }
 }
