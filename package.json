@@ -13,7 +13,7 @@
     "browser-sync": "^2.12.3",
     "del": "*",
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^3.1.0",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-imagemin": "^8.0.0",
     "gulp-sass": "^2.2.0",
